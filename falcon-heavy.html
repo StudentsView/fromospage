@@ -1,33 +1,89 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="css/style.css" />
     <script src="js/script.js" defer></script>
-    <title>부원 모집</title>
+    <title>fromOS Build</title>
+
+    <!-- Page-local styles to extend existing theme without touching css/style.css -->
+    <style>
+      /* Hero background for Builds page */
+      .bg-fromos-build {
+        background: linear-gradient(rgba(0,0,0,.45), rgba(0,0,0,.45)),
+          url('img/fromos-build-hero.jpg') center/cover no-repeat fixed;
+        min-height: 72vh; width: 100%;
+      }
+      .section-inner-center { text-align:center; color:#fff; }
+      .section-inner-center h1 { font-size: clamp(28px, 4vw, 48px); margin: 0 0 .25rem; font-weight: 800; }
+      .section-inner-center p.lead { margin:.25rem 0 1rem; opacity:.9; }
+
+      .section-padding { padding: 64px 20px; }
+      .container { max-width: 1120px; margin: 0 auto; }
+
+      /* Build list */
+      .builds { display: grid; grid-template-columns: repeat(12, 1fr); gap: 20px; }
+      .build-card {
+        grid-column: span 12;
+        background: #0b0d12; color:#e5e7eb;
+        border-radius: 16px; box-shadow: 0 8px 24px rgba(0,0,0,.25);
+        padding: 18px 18px 16px; position: relative; overflow: hidden;
+      }
+      .build-head { display:flex; flex-wrap:wrap; align-items:center; gap:10px; margin-bottom: 6px; }
+      .build-badge { font-size:12px; letter-spacing:.4px; text-transform: uppercase; color:#93c5fd; background: rgba(59,130,246,.12); border:1px solid #3b82f6; padding:6px 10px; border-radius:999px; }
+      .build-title { margin: 0; font-size: 18px; font-weight: 700; }
+      .build-meta { font-size: 13px; color:#9ca3af; margin: 4px 0 10px; }
+      .build-body { font-size: 15px; color:#d1d5db; line-height: 1.6; }
+      .build-body ul { margin: 8px 0 8px 18px; }
+      .build-actions { display:flex; gap:10px; margin-top: 12px; }
+      .btn-outline { display:inline-block; text-decoration:none; font-weight:600; padding:10px 14px; border-radius:999px; border:1px solid #6b7280; color:#e5e7eb; transition: transform .15s ease, background .15s ease; }
+      .btn-outline:hover { transform: translateY(-1px); background: rgba(255,255,255,.06); }
+
+      /* Two-column highlight section */
+      .highlight { display:grid; grid-template-columns: repeat(12, 1fr); gap:20px; align-items: stretch; }
+      .highlight > article { grid-column: span 12; border-radius:16px; overflow:hidden; box-shadow:0 8px 24px rgba(0,0,0,.25); background:#0b0d12; color:#e5e7eb; }
+      .highlight .cover { min-height: 200px; background: url('img/fromos-latest.jpg') center/cover no-repeat; }
+      .highlight .body { padding:18px; }
+      .highlight h3 { margin:0 0 6px; font-size:20px; font-weight:800; }
+      .highlight p { margin:6px 0 0; color:#d1d5db; }
+
+      .eyebrow { color:#9ca3af; text-transform:uppercase; font-size:12px; letter-spacing:1.5px; margin-bottom:6px; }
+      .h2 { font-size: clamp(22px, 3.4vw, 32px); margin: 6px 0 16px; font-weight: 800; color:#e5e7eb; }
+      .sub { color:#9ca3af; max-width:780px; }
+
+      @media (min-width: 860px){
+        .build-card { grid-column: span 6; }
+        .highlight > article:first-child { grid-column: span 7; }
+        .highlight > article:last-child { grid-column: span 5; }
+      }
+    </style>
   </head>
+
   <body>
     <div id="overlay"></div>
     <div id="mobile-menu" class="mobile-main-menu">
       <ul>
-        <li><a href="falcon9.html">Introduce</a></li>
-        <li><a href="falcon-heavy.html">Recruit</a></li>
-        <li><a href="dragon.html">Curriculum</a></li>
+        <li><a href="index.html">Overview</a></li>
+        <li><a href="team.html">Team</a></li>
+        <li><a href="builds.html">Builds</a></li>
+        <li><a href="docs.html">Docs</a></li>
       </ul>
     </div>
+
     <header class="main-header">
       <div class="logo">
         <a href="index.html">
-          <img src="img/logo.png" alt="SpaceX" />
+          <img src="img/logo.png" alt="fromOS" />
         </a>
       </div>
       <nav class="desktop-main-menu">
         <ul>
-          <li><a href="falcon9.html">Introduce</a></li>
-          <li><a href="falcon-heavy.html">Recruit</a></li>
-          <li><a href="dragon.html">Curriculum</a></li>
+          <li><a href="index.html">Overview</a></li>
+          <li><a href="team.html">Team</a></li>
+          <li><a href="builds.html" class="active">Builds</a></li>
+          <li><a href="docs.html">Docs</a></li>
         </ul>
       </nav>
     </header>
@@ -39,43 +95,174 @@
       <span class="hamburger-bottom"></span>
     </button>
 
-    <section class="section-animate bg-falcon-heavy"></section>
+    <!-- Hero -->
+    <section class="section-animate bg-fromos-build"></section>
     <div class="section-inner-center">
-      <h3>Recruit</h3>
-      <p>보인고등학교에서 가장</p>
-      <p>의미있는 공학 동아리</p>
+      <h1>fromOS Builds</h1>
+      <p class="lead">개발 과정을 순차적으로 소개합니다.</p>
     </div>
 
-<section class="section-b">
-      <div class="section-inner">
-        <h2>저희 동아리 SE3C는</h2>
-        <h4>무늬만 <b>실험</b>, 사실상 <b>자습</b>인</h4>
-        <h4>타 동아리와는 달리</h4>
-        <h4>실제 실험을 통한</h4>
-        <h4><b>공학 인재 양성</b>을 약속합니다.</h4> <br>
-        <h4>문의 : boin@se3c.space</h4>
-        </a>
-        <a href="https://forms.gle/JewnzNU3wAbFyKpW8" class="btn">
-          <div class="hover"></div>
-          <span>지원하기</span>
-        </a>
+    <!-- Quick stats (uses existing counter animation from js/script.js) -->
+    <div class="stats">
+      <div>
+        <span class="counter" data-target="5">5</span>
+        <h4>Team Members</h4>
       </div>
+      <div>
+        <span class="counter" data-target="0">0</span>
+        <h4>Builds</h4>
+      </div>
+      <div>
+        <span class="counter" data-target="4">4</span>
+        <h4>In Progress</h4>
+      </div>
+    </div>
 
-      <div class="scroll-arrow">
-        <svg width="30px" height="20px">
-          <path
-            stroke="#ffffff"
-            fill="none"
-            stroke-width="2px"
-            d="M2.000,5.000 L15.000,18.000 L28.000,5.000 "
-          ></path>
-        </svg>
+    <!-- Latest highlight -->
+    <section class="section-padding">
+      <div class="container">
+        <div class="eyebrow">latest</div>
+        <h2 class="h2">최신 빌드 하이라이트</h2>
+        <div class="highlight">
+          <article>
+            <div class="cover" aria-label="Latest build cover image"></div>
+            <div class="body">
+              <div class="build-head">
+                <span class="build-badge">2025.11 · Alpha</span>
+                <h3 class="build-title">LLM 온디바이스 추론 최적화 · 브라우저 보안 패치</h3>
+              </div>
+              <p class="build-meta">예시 · 실제 릴리스 노트로 교체하세요</p>
+              <p>저사양 장치 대응을 위해 LLM 런타임 메모리 사용량을 축소하고, Chromium 기반 브라우저의 보안 패치를 동기화했습니다.</p>
+              <div class="build-actions">
+                <a class="btn-outline" href="docs/changelog-2025-11.html">자세히 보기</a>
+                <a class="btn-outline" href="docs/upgrade-guide.html">업그레이드 가이드</a>
+              </div>
+            </div>
+          </article>
+
+          <article>
+            <div class="body">
+              <h3>Roadmap</h3>
+              <p class="sub">커널 업그레이드, 브라우저 커스터마이징, 교육용 기본 앱, 온디바이스 AI를 순차적으로 출시합니다.</p>
+              <ul class="build-body">
+                <li>Q4: 메모리 최적화, 초기 배포 자동화</li>
+                <li>Q1: 브라우저 UI 리디자인, 오프라인 우선 앱</li>
+                <li>Q2: LLM 개인정보 보호 학습(온디바이스) 실험</li>
+              </ul>
+            </div>
+          </article>
+        </div>
       </div>
     </section>
-    
+
+    <!-- Build cards list (replace the sample entries with real ones) -->
+    <section class="section-padding" style="padding-top: 0;">
+      <div class="container">
+        <div class="eyebrow">history</div>
+        <h2 class="h2">빌드 타임라인</h2>
+        <p class="sub">아래 항목은 예시입니다. 실제 버전·날짜·변경 사항을 채우세요.</p>
+
+        <div class="builds">
+          <!-- Build A -->
+          <article class="build-card">
+            <div class="build-head">
+              <span class="build-badge">2025.10 · Preview</span>
+              <h3 class="build-title">Kernel 6.10, 파일 시스템 안정화</h3>
+            </div>
+            <p class="build-meta">예시 · YYYY-MM-DD</p>
+            <div class="build-body">
+              <ul>
+                <li>eMMC/SSD 혼합 환경 부팅 신뢰성 개선</li>
+                <li>전원 관리(슬립/웨이크) 버그 수정</li>
+                <li>배포 이미지 사이즈 14% 감소</li>
+              </ul>
+            </div>
+            <div class="build-actions">
+              <a class="btn-outline" href="docs/changelog-2025-10.html">Changelog</a>
+              <a class="btn-outline" href="docs/download-2025-10.html">Download</a>
+            </div>
+          </article>
+
+          <!-- Build B -->
+          <article class="build-card">
+            <div class="build-head">
+              <span class="build-badge">2025.09 · Dev</span>
+              <h3 class="build-title">브라우저 커스텀 테마 · 보안 업데이트</h3>
+            </div>
+            <p class="build-meta">예시 · YYYY-MM-DD</p>
+            <div class="build-body">
+              <ul>
+                <li>fromOS 브라우저 테마(라이트/다크) 추가</li>
+                <li>네트워크 보안 설정 기본값 강화</li>
+                <li>프록시/필터링 정책 템플릿</li>
+              </ul>
+            </div>
+            <div class="build-actions">
+              <a class="btn-outline" href="docs/changelog-2025-09.html">Changelog</a>
+              <a class="btn-outline" href="docs/download-2025-09.html">Download</a>
+            </div>
+          </article>
+
+          <!-- Build C -->
+          <article class="build-card">
+            <div class="build-head">
+              <span class="build-badge">2025.08 · Dev</span>
+              <h3 class="build-title">교육용 기본 앱 번들(메모, 파일, 캘린더)</h3>
+            </div>
+            <p class="build-meta">예시 · YYYY-MM-DD</p>
+            <div class="build-body">
+              <ul>
+                <li>오프라인 우선 메모 앱 추가</li>
+                <li>파일 관리자 UI 정리</li>
+                <li>간단한 수업 타이머/집중 모드</li>
+              </ul>
+            </div>
+            <div class="build-actions">
+              <a class="btn-outline" href="docs/changelog-2025-08.html">Changelog</a>
+              <a class="btn-outline" href="docs/download-2025-08.html">Download</a>
+            </div>
+          </article>
+
+          <!-- Build D -->
+          <article class="build-card">
+            <div class="build-head">
+              <span class="build-badge">2025.07 · Dev</span>
+              <h3 class="build-title">LLM 초기 통합 · 시스템 설정 마법사</h3>
+            </div>
+            <p class="build-meta">예시 · YYYY-MM-DD</p>
+            <div class="build-body">
+              <ul>
+                <li>온디바이스 LLM 베타 연동(질의·요약 중심)</li>
+                <li>최초 부팅 설정 마법사 도입</li>
+                <li>네트워크/계정/지역 설정 흐름 개선</li>
+              </ul>
+            </div>
+            <div class="build-actions">
+              <a class="btn-outline" href="docs/changelog-2025-07.html">Changelog</a>
+              <a class="btn-outline" href="docs/download-2025-07.html">Download</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Call to action -->
+    <section class="section-padding" style="background:#0b0d12;">
+      <div class="container" style="text-align:center; color:#e5e7eb;">
+        <div class="eyebrow">changelog</div>
+        <h2 class="h2">전체 변경 기록 보기</h2>
+        <p class="sub" style="margin:0 auto 16px;">모든 빌드의 상세 내역과 설치 가이드는 문서 페이지에서 확인하세요.</p>
+        <div style="margin-top:10px;">
+          <a class="btn-outline" href="docs/changelog.html">Open Changelog</a>
+          <a class="btn-outline" href="docs/downloads.html">All Downloads</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Keep original footer style -->
     <footer>
       <ul>
-        <li>BOIN SE3C &copy; 2025</li>
+        <li>fromOS &copy; 2025</li>
       </ul>
     </footer>
   </body>
