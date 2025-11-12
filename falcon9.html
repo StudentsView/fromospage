@@ -1,33 +1,120 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="css/style.css" />
     <script src="js/script.js" defer></script>
-    <title>동아리 소개</title>
+    <title>fromOS Developers</title>
+
+    <!-- Minor add-on styles to match existing look & feel without touching css/style.css -->
+    <style>
+      /* Hero background for this page */
+      .bg-fromos-team {
+        /* Replace the image below with your own hero image if desired */
+        background: linear-gradient(rgba(0,0,0,.35), rgba(0,0,0,.35)),
+          url('img/fromos-hero.jpg') center/cover no-repeat fixed;
+        min-height: 72vh;
+        width: 100%;
+      }
+      .section-inner-center {
+        text-align: center;
+        max-width: 960px;
+        margin: -40vh auto 0; /* pull into hero like the original */
+        color: #fff;
+      }
+      .section-inner-center h1 {
+        margin: 0 0 .25rem 0;
+        font-size: clamp(28px, 4vw, 48px);
+        font-weight: 700;
+        letter-spacing: .3px;
+      }
+      .section-inner-center p.lead {
+        margin: .25rem 0 1rem;
+        opacity: .9;
+        font-size: clamp(14px, 2.1vw, 18px);
+      }
+
+      /* Team grid */
+      .section-padding { padding: 64px 20px; }
+      .container { max-width: 1120px; margin: 0 auto; }
+      .team-grid {
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+        gap: 20px;
+      }
+      .member-card {
+        grid-column: span 12;
+        background: #0b0d12; /* assume dark theme like original */
+        color: #e5e7eb;
+        border-radius: 16px;
+        box-shadow: 0 8px 24px rgba(0,0,0,.25);
+        overflow: hidden;
+        display: grid;
+        grid-template-columns: 160px 1fr;
+        align-items: stretch;
+      }
+      .member-card img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        background: #111827;
+        display: block;
+      }
+      .member-body { padding: 18px 18px 16px; }
+      .member-name { font-size: 20px; font-weight: 700; margin: 0 0 6px; }
+      .member-dept { font-size: 14px; color: #9ca3af; margin: 0 0 10px; }
+      .member-desc { font-size: 15px; line-height: 1.55; margin: 0 0 12px; color:#d1d5db; }
+      .member-actions { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+      .btn-mail {
+        display: inline-block; text-decoration: none; font-weight: 600;
+        padding: 10px 14px; border-radius: 999px; border: 1px solid #3b82f6; color: #dbeafe;
+        transition: transform .15s ease, background .15s ease;
+        background: rgba(59,130,246,.12);
+      }
+      .btn-mail:hover { transform: translateY(-1px); background: rgba(59,130,246,.18); }
+      .email-text { font-size: 13px; color: #9ca3af; }
+
+      /* headings */
+      .eyebrow { color: #9ca3af; text-transform: uppercase; font-size: 12px; letter-spacing: 1.5px; margin-bottom: 6px; }
+      .h2 { font-size: clamp(22px, 3.4vw, 32px); margin: 6px 0 16px; font-weight: 800; color:#e5e7eb; }
+      .sub { color:#9ca3af; max-width: 780px; }
+
+      /* responsive */
+      @media (min-width: 720px){
+        .member-card { grid-column: span 6; }
+      }
+      @media (min-width: 1024px){
+        .member-card { grid-column: span 6; }
+      }
+    </style>
   </head>
+
   <body>
     <div id="overlay"></div>
     <div id="mobile-menu" class="mobile-main-menu">
       <ul>
-        <li><a href="falcon9.html">Introduce</a></li>
-        <li><a href="falcon-heavy.html">Recruit</a></li>
-        <li><a href="dragon.html">Curriculum</a></li>
+        <li><a href="index.html">Overview</a></li>
+        <li><a href="team.html">Team</a></li>
+        <li><a href="recruit.html">Recruit</a></li>
+        <li><a href="docs.html">Docs</a></li>
       </ul>
     </div>
+
     <header class="main-header">
       <div class="logo">
         <a href="index.html">
-          <img src="img/logo.png" alt="SpaceX" />
+          <!-- Keep existing logo path for compatibility; swap the image file to your fromOS logo if available -->
+          <img src="img/logo.png" alt="fromOS" />
         </a>
       </div>
       <nav class="desktop-main-menu">
         <ul>
-          <li><a href="falcon9.html">Introduce</a></li>
-          <li><a href="falcon-heavy.html">Recruit</a></li>
-          <li><a href="dragon.html">Curriculum</a></li>
+          <li><a href="index.html">Overview</a></li>
+          <li><a href="team.html">Team</a></li>
+          <li><a href="recruit.html">Recruit</a></li>
+          <li><a href="docs.html">Docs</a></li>
         </ul>
       </nav>
     </header>
@@ -39,28 +126,108 @@
       <span class="hamburger-bottom"></span>
     </button>
 
-    <section class="section-animate bg-falcon-9"></section>
+    <!-- Hero -->
+    <section class="section-animate bg-fromos-team"></section>
     <div class="section-inner-center">
-      <h3></h3>
-      <h3>Introduce Us</h3>
-      <p>President S. J. Yoon</p>
-      <p>Vice President J. Y. Suh</p>
+      <h1>fromOS Engineering Team</h1>
+      <p class="lead">교육의 미래를 위한 운영체제를 만듭니다.</p>
     </div>
 
+    <!-- Quick Stats (uses existing .counter animation in js/script.js) -->
     <div class="stats">
       <div>
-        <span class="counter" data-target="5">0</span>
-        <h4>Start Member</h4>
+        <span class="counter" data-target="4">0</span>
+        <h4>Team Members</h4>
       </div>
       <div>
-        <span class="counter" data-target="2">0</span>
-        <h4>Achievements</h4>
+        <span class="counter" data-target="4">0</span>
+        <h4>Core Teams</h4>
       </div>
       <div>
-        <span class="counter" data-target="3">0</span>
-        <h4>Goals We Have</h4>
+        <span class="counter" data-target="4">0</span>
+        <h4>Contacts</h4>
       </div>
     </div>
+
+    <!-- Team Cards -->
+    <section class="section-padding">
+      <div class="container">
+        <div class="eyebrow">our team</div>
+        <h2 class="h2">개발진 소개</h2>
+        <p class="sub">fromOS 프로젝트의 구성원들을 소개합니다.</p>
+
+        <div class="team-grid" id="team">
+          <!-- Member 1: 서주영 -->
+          <article class="member-card">
+            <!-- TIP: 넣을 이미지 경로 예시: img/team/suh-juyoung.jpg -->
+            <img src="img/team/suh-juyoung.jpg" alt="서주영 프로필 사진" />
+            <div class="member-body">
+              <h3 class="member-name">서주영</h3>
+              <p class="member-dept">운영체제 개발팀</p>
+              <p class="member-desc">커널, 드라이버, 운영체제 UI 담당</p>
+              <div class="member-actions">
+                <a class="btn-mail" href="mailto:juyoungsuh@se3c.space">이메일 보내기</a>
+                <span class="email-text">프로젝트 팀장</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Member 2: 윤서준 -->
+          <article class="member-card">
+            <img src="img/team/yoon-seojun.jpg" alt="윤서준 프로필 사진" />
+            <div class="member-body">
+              <h3 class="member-name">윤서준</h3>
+              <p class="member-dept">프로그램 개발팀</p>
+              <p class="member-desc">fromOS 기본 탑재 프로그램 담당</p>
+              <div class="member-actions">
+                <a class="btn-mail" href="mailto:yoonsj0305@se3c.space">이메일 보내기</a>
+                <span class="email-text">yoonsj0305@se3c.space</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Member 3: 이환희 -->
+          <article class="member-card">
+            <img src="img/team/lee-hwanhee.jpg" alt="이환희 프로필 사진" />
+            <div class="member-body">
+              <h3 class="member-name">이환희</h3>
+              <p class="member-dept">브라우저 개발팀</p>
+              <p class="member-desc">Chromium 브라우저 UI 및 기능 담당</p>
+              <div class="member-actions">
+                <a class="btn-mail" href="mailto:leehwanhee@se3c.space">이메일 보내기</a>
+                <span class="email-text">leehwanhee@se3c.space</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Member 4: 황준우 -->
+          <article class="member-card">
+            <img src="img/team/hwang-junwoo.jpg" alt="황준우 프로필 사진" />
+            <div class="member-body">
+              <h3 class="member-name">황준우</h3>
+              <p class="member-dept">LLM 인공지능 개발팀</p>
+              <p class="member-desc">LLM 온디바이스 인공지능 파인튜닝 담당</p>
+              <div class="member-actions">
+                <a class="btn-mail" href="mailto:25-10335@se3c.space">이메일 보내기</a>
+                <span class="email-text">25-10335@se3c.space</span>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA / Contact -->
+    <section class="section-padding" style="background:#0b0d12;">
+      <div class="container" style="color:#e5e7eb; text-align:center;">
+        <div class="eyebrow">contact</div>
+        <h2 class="h2">협업 및 문의</h2>
+        <p class="sub" style="margin:0 auto 16px;">
+          fromOS와 함께할 개발자와 협업자를 모집합니다.
+          현재 Naver 산하 부서와 함께하고 있습니다.
+        </p>
+      </div>
+    </section>
 
     <footer>
       <ul>
